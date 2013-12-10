@@ -135,43 +135,39 @@ bool ChatHandler::HandleWAnnounceCommand(const char* args, WorldSession* m_sessi
 	return true;
 }
 
-bool ChatHandler::HandleGMOnCommand(const char* args, WorldSession* m_session)
+bool ChatHandler::HandleGMOnCommand(const char* args, WorldSession *m_session)
 {
-	GreenSystemMessage(m_session, "Setting GM Flag on yourself.");
+	/*uint32 newbytes = m_session->GetPlayer( )->GetUInt32Value(PLAYER_BYTES_2) | 0x8;
+	m_session->GetPlayer( )->SetUInt32Value( PLAYER_BYTES_2, newbytes);
 
+	GreenSystemMessage(m_session, "GM Flag Set.");*/
+	GreenSystemMessage(m_session, "Setting GM Flag on yourself...");
 	Player* _player = m_session->GetPlayer();
 	if(_player->HasFlag(PLAYER_FLAGS, PLAYER_FLAG_GM))
 		RedSystemMessage(m_session, "GM Flag is already set on. Use .gm off to disable it.");
 	else
 	{
 		_player->SetFlag(PLAYER_FLAGS, PLAYER_FLAG_GM);	// <GM>
-
-		_player->SetFaction(35);
-		_player->RemovePvPFlag();
-
 		BlueSystemMessage(m_session, "GM flag set. It will now appear above your name and in chat messages until you use .gm off.");
-
-		_player->UpdateVisibility();
 	}
 
 	return true;
 }
 
 
-bool ChatHandler::HandleGMOffCommand(const char* args, WorldSession* m_session)
+bool ChatHandler::HandleGMOffCommand(const char* args, WorldSession *m_session)
 {
+	//uint32 newbytes = m_session->GetPlayer( )->GetUInt32Value(PLAYER_BYTES_2) & ~(0x8);
+	//m_session->GetPlayer( )->SetUInt32Value( PLAYER_BYTES_2, newbytes);
+
+	//GreenSystemMessage(m_session, "GM Flag Unset.");
+	GreenSystemMessage(m_session, "Unsetting GM Flag on yourself...");
 	Player* _player = m_session->GetPlayer();
 	if(_player->HasFlag(PLAYER_FLAGS, PLAYER_FLAG_GM))
 	{
 
 		_player->RemoveFlag(PLAYER_FLAGS, PLAYER_FLAG_GM);	// <GM>
-
-		_player->SetFaction(_player->GetInitialFactionId());
-		_player->UpdatePvPArea();
-
 		BlueSystemMessage(m_session, "GM Flag Removed. <GM> Will no longer show in chat messages or above your name.");
-
-		_player->UpdateVisibility();
 	}
 
 	return true;
