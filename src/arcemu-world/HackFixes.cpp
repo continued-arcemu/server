@@ -6762,7 +6762,25 @@ void ApplyNormalFixes()
 		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 		sp->EffectTriggerSpell[0] = 76691;
 	}
-
+	/*Scarlet Fever*/
+	sp = dbcSpell.LookupEntryForced( 81131 );
+	//if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL; 
+		sp->ProcOnNameHash[0] = SPELL_HASH_BLOOD_BOIL;
+	}
+	/*
+	http://www.wowhead.com/spell=50034
+	*/
+	sp = dbcSpell.LookupEntryForced( 50034 );
+	//if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL; 
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 50031;
+		sp->ProcOnNameHash[0] = SPELL_HASH_DEATH_STRIKE;
+		sp->ProcOnNameHash[1] = SPELL_HASH_OBLITERATE;
+	}
 	/**********************************************************
 	 *	Acherus Deatcharger
 	 **********************************************************/
