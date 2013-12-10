@@ -3975,6 +3975,20 @@ void ApplyNormalFixes()
 
 	// Insert mage spell fixes here
 
+	//Mirror Image http://www.wowhead.com/spell=55342
+	sp = dbcSpell.LookupEntryForced( 55342 );
+	if( sp != NULL )
+	{
+		sp->Effect[0] = SPELL_EFFECT_SUMMON;
+		sp->EffectMiscValue[0] = 47244;
+		sp->EffectMiscValueB[0] = 1021;
+		sp->EffectBasePoints[0] = 2;
+		sp->EffectImplicitTargetA[0] = EFF_TARGET_SELF;
+		sp->Effect[1] = SPELL_EFFECT_NULL;
+		sp->Effect[2] = SPELL_EFFECT_NULL;
+		sp->c_is_flags |= SPELL_FLAG_IS_INHERITING_LEVEL;
+	}
+
 	//Missile Barrage
 	sp = CheckAndReturnSpellEntry(44404);
 	if(sp != NULL)
