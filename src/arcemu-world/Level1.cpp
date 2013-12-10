@@ -394,7 +394,6 @@ bool ChatHandler::HandleSummonCommand(const char* args, WorldSession* m_session)
 	{
 		// send message to user
 		char buf[256];
-		char buf0[256];
 
 		if(!m_session->CanUseCommand('z') && chr->IsSummonDisabled())
 		{
@@ -418,13 +417,6 @@ bool ChatHandler::HandleSummonCommand(const char* args, WorldSession* m_session)
 			chr->RemoteRevive();
 		if(chr->getDeathState() != 0)  // Not alive
 			chr->ResurrectPlayer();
-
-		if(!m_session->GetPlayer()->m_isGmInvisible)
-		{
-			// send message to player
-			snprintf((char*)buf0, 256, "You are being summoned by %s.", m_session->GetPlayer()->GetName());
-			SystemMessageToPlr(chr, buf0);
-		}
 
 		Player* plr = m_session->GetPlayer();
 
@@ -516,13 +508,6 @@ bool ChatHandler::HandleAppearCommand(const char* args, WorldSession* m_session)
 		}
 		snprintf((char*)buf, 256, "Appearing at %s's location.", chr->GetName()); // -- europa
 		SystemMessage(m_session, buf);
-
-		if(!m_session->GetPlayer()->m_isGmInvisible)
-		{
-			char buf0[256];
-			snprintf((char*)buf0, 256, "%s is appearing to your location.", m_session->GetPlayer()->GetName());
-			SystemMessageToPlr(chr, buf0);
-		}
 
 		//m_session->GetPlayer()->SafeTeleport(chr->GetMapId(), chr->GetInstanceID(), chr->GetPosition());
 		//If the GM is on the same map as the player, use the normal safeteleport method
