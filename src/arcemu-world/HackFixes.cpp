@@ -6735,6 +6735,34 @@ void ApplyNormalFixes()
 		sp->Effect[0] = SPELL_EFFECT_DUMMY;
 	}
 
+	/*
+	http://www.wowhead.com/spell=81229
+	Runic Empowerment
+	*/
+	sp = dbcSpell.LookupEntryForced( 81229 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL; 
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 81229;		
+		sp->ProcOnNameHash[0] = SPELL_HASH_DEATH_STRIKE;
+		sp->ProcOnNameHash[1] = SPELL_HASH_FROST_STRIKE;
+		sp->ProcOnNameHash[2] = SPELL_HASH_DEATH_COIL;
+		sp->procChance = 45;
+	}
+
+	/*
+	http://www.wowhead.com/spell=93099
+	Vengeance
+	*/
+	sp = dbcSpell.LookupEntryForced( 93099 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_ANY_DAMAGE_VICTIM; 
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 76691;
+	}
+
 	/**********************************************************
 	 *	Acherus Deatcharger
 	 **********************************************************/
