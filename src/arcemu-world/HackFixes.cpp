@@ -1437,6 +1437,22 @@ void ApplyNormalFixes()
 
 	// Insert warrior spell fixes here
 
+	//Raging Blow
+	sp = dbcSpell.LookupEntryForced( 85288 );
+	if( sp != NULL )
+	{
+		sp->Effect[2] = SPELL_EFFECT_TRIGGER_SPELL;
+		sp->EffectImplicitTargetA[2] = EFF_TARGET_SINGLE_ENEMY;
+		sp->EffectTriggerSpell[2] = 85384;
+	}
+	//Incite
+	sp = dbcSpell.LookupEntryForced( 50685 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CRIT_ATTACK | PROC_ON_SPELL_CRIT_HIT;
+		sp->ProcOnNameHash[0] = SPELL_HASH_HEROIC_STRIKE;
+	}
+
 	/**********************************************************
 	 *	Arms
 	 **********************************************************/
@@ -6764,7 +6780,7 @@ void ApplyNormalFixes()
 	}
 	/*Scarlet Fever*/
 	sp = dbcSpell.LookupEntryForced( 81131 );
-	//if( sp != NULL )
+	if( sp != NULL )
 	{
 		sp->procFlags = PROC_ON_CAST_SPELL; 
 		sp->ProcOnNameHash[0] = SPELL_HASH_BLOOD_BOIL;
@@ -6773,7 +6789,7 @@ void ApplyNormalFixes()
 	http://www.wowhead.com/spell=50034
 	*/
 	sp = dbcSpell.LookupEntryForced( 50034 );
-	//if( sp != NULL )
+	if( sp != NULL )
 	{
 		sp->procFlags = PROC_ON_CAST_SPELL; 
 		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
