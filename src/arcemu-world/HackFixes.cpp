@@ -1152,6 +1152,15 @@ void ApplyNormalFixes()
 
 		// Insert paladin spell fixes here
 
+		// eh holy radiance ..
+		sp = dbcSpell.LookupEntryForced( 86452 );
+		if( sp != NULL )
+		{
+			sp->EffectImplicitTargetA[0] = sp->EffectImplicitTargetB[0]; 
+			sp->EffectRadiusIndex[0] = 9;
+			sp->EffectImplicitTargetB[0] = 0;
+		}
+
 		// Shield of Righteousness
 		if(sp->NameHash == SPELL_HASH_SHIELD_OF_RIGHTEOUSNESS)
 		{
@@ -3988,6 +3997,8 @@ void ApplyNormalFixes()
 		sp->Effect[2] = SPELL_EFFECT_NULL;
 		sp->c_is_flags |= SPELL_FLAG_IS_INHERITING_LEVEL;
 	}
+
+
 
 	//Missile Barrage
 	sp = CheckAndReturnSpellEntry(44404);
