@@ -1523,7 +1523,13 @@ void ApplyNormalFixes()
 	{
 		sp->procFlags = PROC_ON_CRIT_ATTACK;
 	}
-
+	/* http://www.wowhead.com/spell=50622 */
+	sp = dbcSpell.LookupEntryForced( 50622 );
+	if( sp != NULL )
+	{
+		sp->EffectImplicitTargetA[1] = sp->EffectImplicitTargetA[0] = EFF_TARGET_ALL_TARGETABLE_AROUND_LOCATION_IN_RADIUS;
+		sp->EffectRadiusIndex[1] = sp->EffectRadiusIndex[0];
+	}
 	// Warrior - Deep Wounds
 	sp = CheckAndReturnSpellEntry(12834);
 	if(sp != NULL)
