@@ -3103,6 +3103,15 @@ void ApplyNormalFixes()
 	{
 		sp->EffectApplyAuraName[0] = */
 
+	//Glyph of Hemorrhage
+	sp = dbcSpell.LookupEntryForced(56807);
+	if(sp != NULL)
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL;
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->ProcOnNameHash[0] = SPELL_HASH_HEMORRHAGE;
+	}
+
 	//////////////////////////////////////////
 	// PRIEST								//
 	//////////////////////////////////////////
