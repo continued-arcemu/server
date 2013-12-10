@@ -2923,6 +2923,14 @@ void ApplyNormalFixes()
 		sp->procChance = 10;
 	}
 
+	//Tricks of the Trade
+	sp = dbcSpell.LookupEntryForced(57934);
+	if(sp != NULL)
+	{
+		sp->Effect[2] = SPELL_EFFECT_TRIGGER_SPELL;
+		sp->EffectImplicitTargetA[2] = EFF_TARGET_DUEL;
+		sp->EffectTriggerSpell[2] = 57933;
+	}
 	//Rogue - Blade Twisting Rank 2
 	sp = CheckAndReturnSpellEntry(31126);
 	if(sp != NULL)
@@ -2971,6 +2979,11 @@ void ApplyNormalFixes()
 		sp->Spell_Dmg_Type = SPELL_DMG_TYPE_RANGED;
 		sp->is_ranged_spell = true;
 	}
+
+	//Vendetta
+	sp = dbcSpell.LookupEntryForced(79140);
+	if(sp != NULL)
+	sp->EffectMiscValue[0] = 127;	//all damage = all schools
 
 	//rogue - Shadowstep
 	sp = CheckAndReturnSpellEntry(36563);
