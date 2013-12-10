@@ -1161,6 +1161,17 @@ void ApplyNormalFixes()
 			sp->EffectImplicitTargetB[0] = 0;
 		}
 
+	//Long Arm of the Law
+	sp = dbcSpell.LookupEntryForced( 87168 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL;
+		sp->procChance = sp->EffectBasePoints[0];
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 87173;	
+		sp->ProcOnNameHash[0] = SPELL_HASH_JUDGEMENT;
+	}
+
 		// Shield of Righteousness
 		if(sp->NameHash == SPELL_HASH_SHIELD_OF_RIGHTEOUSNESS)
 		{
