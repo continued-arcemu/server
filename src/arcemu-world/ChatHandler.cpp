@@ -19,6 +19,7 @@
  */
 
 #include "StdAfx.h"
+//#define AUTO_GM_RESPONSE // not gonna be defined until i figure this shit out
 
 extern std::string LogFileName;
 extern bool bLogChat;
@@ -404,6 +405,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket & recv_data)
 					break;
 				}
 
+#ifdef AUTO_GM_RESPONSE
 				// Check that the player isn't a gm with his status on
 				// TODO: Game Master's on retail are able to have block whispers after they close the ticket with the current packet.
 				// When a Game Master is visible to your player it says "This player is unavailable for whisper" I need to figure out how this done.
@@ -417,6 +419,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket & recv_data)
 					playercache->DecRef();
 					break;
 				}
+#endif
 
 				if(playercache->CountValue64(CACHE_SOCIAL_IGNORELIST, _player->GetLowGUID()) > 0)
 				{
