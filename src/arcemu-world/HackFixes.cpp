@@ -1204,6 +1204,15 @@ void ApplyNormalFixes()
 		if(sp->NameHash == SPELL_HASH_MEND_PET)
 			sp->ChannelInterruptFlags = 0;
 
+	sp = dbcSpell.LookupEntryForced( 56829 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL ;
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->procChance = 100;
+		sp->EffectTriggerSpell[0] = 56829;
+		sp->ProcOnNameHash[ 0 ] = SPELL_HASH_MISDIRECTION;
+	}
 
 		// Disengage
 		// Only works in combat
@@ -2560,6 +2569,38 @@ void ApplyNormalFixes()
 	//////////////////////////////////////////
 	// HUNTER								//
 	//////////////////////////////////////////
+	//beast mastery
+	sp = dbcSpell.LookupEntryForced( 53270 );
+	if( sp != NULL )
+	{
+		sp->Effect[0] = SPELL_EFFECT_NULL;
+		sp->EffectApplyAuraName[1] = SPELL_AURA_DUMMY;
+	}
+	//termination http://www.wowhead.com/spell=83489
+	sp = dbcSpell.LookupEntryForced(83489);
+	if(sp != NULL)
+	{
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->procFlags = PROC_ON_CAST_SPELL ;
+		sp->procChance = 100;
+		sp->EffectTriggerSpell[0] = 83489;
+		sp->ProcOnNameHash[1] = SPELL_HASH_STEADY_SHOT;
+	}
+	//chimera Shot 
+	sp = dbcSpell.LookupEntryForced(53209);
+	if(sp != NULL)
+	{
+		sp->Effect[0] = SPELL_EFFECT_HEAL;
+		sp->EffectImplicitTargetA[0] = EFF_TARGET_SELF;
+		sp->EffectImplicitTargetB[0] = EFF_TARGET_NONE;
+	}
+	//Master Marksman
+	sp = dbcSpell.LookupEntryForced(34485);
+	if(sp != NULL)
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL ;
+		sp->ProcOnNameHash[0] = SPELL_HASH_STEADY_SHOT;
+	}
 	//Wild quiver rank 1
 	sp = CheckAndReturnSpellEntry(53215);
 	if(sp != NULL)
@@ -2658,12 +2699,16 @@ void ApplyNormalFixes()
 		sp->procFlags = PROC_ON_RANGED_ATTACK | static_cast<uint32>(PROC_TARGET_SELF);
 
 	// Hunter - Spirit Bond
-	sp = CheckAndReturnSpellEntry(19578);
-	if(sp != NULL)
+	sp = dbcSpell.LookupEntryForced( 19578 );
+	if( sp != NULL )
 	{
 		sp->c_is_flags |= SPELL_FLAG_IS_CASTED_ON_PET_SUMMON_PET_OWNER | SPELL_FLAG_IS_EXPIREING_WITH_PET;
 		sp->Effect[0] = SPELL_EFFECT_TRIGGER_SPELL;
 		sp->EffectTriggerSpell[0] = 19579;
+		sp->EffectImplicitTargetA[0] = EFF_TARGET_PET;
+		sp->EffectImplicitTargetB[0] = EFF_TARGET_SELF;
+		sp->EffectImplicitTargetA[1] = EFF_TARGET_PET;
+		sp->EffectImplicitTargetB[1] = EFF_TARGET_SELF;
 	}
 	sp = CheckAndReturnSpellEntry(20895);
 	if(sp != NULL)
@@ -4141,6 +4186,16 @@ void ApplyNormalFixes()
 		sp->EffectApplyAuraName[0] = SPELL_AURA_ADD_PCT_MODIFIER;
 	}
 
+	//summ water ele
+	sp = dbcSpell.LookupEntryForced( 31687 );
+	if( sp != NULL )
+	{
+		sp->Effect[0] = SPELL_EFFECT_SUMMON;
+		sp->EffectImplicitTargetA[0] = EFF_TARGET_DYNAMIC_OBJECT;
+		sp->EffectMiscValue[0] = 510;
+		sp->EffectMiscValueB[0] = 67;
+	}
+
 	//Mage - Elemental Precision
 	sp = CheckAndReturnSpellEntry(29438);
 	if(sp != NULL)
@@ -4516,6 +4571,14 @@ void ApplyNormalFixes()
 	if(sp != NULL)
 	{
 		sp->ChannelInterruptFlags = 0; // Remove channeling behaviour.
+	}
+
+	//soul link
+	sp = dbcSpell.LookupEntryForced( 19028 );
+	if( sp != NULL )
+	{
+		sp->Effect[0]= SPELL_EFFECT_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 25228;
 	}
 
 	//megai2: Everlasting Affliction
