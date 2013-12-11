@@ -4476,6 +4476,13 @@ void ApplyNormalFixes()
 
 	// Insert warlock spell fixes here
 
+	/* soulstone */
+	sp = dbcSpell.LookupEntryForced( 20707 );	
+	if( sp != NULL )
+	{
+		sp->EffectTriggerSpell[0] = 3026; /* ressurection spell http://www.wowhead.com/spell=3026 */
+	}
+
 	//Dummy for Demonic Circle
 	sp = CheckAndReturnSpellEntry(48018);
 	if(sp != NULL)
