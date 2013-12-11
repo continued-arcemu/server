@@ -1472,6 +1472,13 @@ void ApplyNormalFixes()
 		sp->procFlags = PROC_ON_CRIT_ATTACK | PROC_ON_SPELL_CRIT_HIT;
 		sp->ProcOnNameHash[0] = SPELL_HASH_HEROIC_STRIKE;
 	}
+	//Rampage
+	sp = dbcSpell.LookupEntryForced( 29801 );
+	if( sp != NULL )
+	{
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->procFlags = PROC_ON_MELEE_ATTACK | static_cast<uint32>(PROC_TARGET_SELF);
+	}
 
 	/**********************************************************
 	 *	Arms
