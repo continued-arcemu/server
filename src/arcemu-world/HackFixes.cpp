@@ -4009,7 +4009,13 @@ void ApplyNormalFixes()
 		sp->c_is_flags |= SPELL_FLAG_IS_INHERITING_LEVEL;
 	}
 
-
+	// improve blink 1
+	sp = dbcSpell.LookupEntryForced( 31569 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL;
+		sp->ProcOnNameHash[0] = SPELL_HASH_BLINK;
+	}
 
 	//Missile Barrage
 	sp = CheckAndReturnSpellEntry(44404);
