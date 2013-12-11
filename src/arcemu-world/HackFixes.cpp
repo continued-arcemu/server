@@ -1181,6 +1181,17 @@ void ApplyNormalFixes()
 			sp->Effect[2] = SPELL_EFFECT_SCHOOL_DAMAGE; //hack
 		}
 
+	//Shield of the Templar
+	sp = dbcSpell.LookupEntryForced( 31848 );
+	if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL;
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 31848;	//!!self proc!
+		sp->ProcOnNameHash[0] = SPELL_HASH_DIVINE_PLEA;
+		sp->procChance = 100;
+	}
+
 		// Paladin - Consecration
 		if(sp->NameHash == SPELL_HASH_CONSECRATION)
 		{
