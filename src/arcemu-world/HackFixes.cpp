@@ -4124,7 +4124,7 @@ void ApplyNormalFixes()
 	{
 		sp->BGR_one_buff_on_target = 0;
 		sp->procFlags = PROC_ON_CAST_SPELL;
-		sp->procCharges = 2;
+		sp->procCharges = 1;
 	}
 
 	//Mage - Spell Power
