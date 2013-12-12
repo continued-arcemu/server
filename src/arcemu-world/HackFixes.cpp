@@ -4090,6 +4090,9 @@ void ApplyNormalFixes()
 		sp->ProcOnNameHash[0] = SPELL_HASH_BLINK;
 	}
 
+	if( sp->NameHash == SPELL_HASH_HYPOTHERMIA )
+		sp->c_is_flags |= SPELL_FLAG_IS_FORCEDDEBUFF;
+
 	//Missile Barrage
 	sp = CheckAndReturnSpellEntry(44404);
 	if(sp != NULL)
