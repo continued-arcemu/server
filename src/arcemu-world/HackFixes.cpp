@@ -4304,6 +4304,12 @@ void ApplyNormalFixes()
 		sp->EffectBasePoints[0] = 5 * (sp->EffectBasePoints[0] + 1);
 	}
 
+	// Icy Veins
+	sp = dbcSpell.LookupEntryForced( 12472 );
+	if( sp != NULL )
+	{
+		sp->EffectMiscValue[1] = SMT_TRIGGER;
+	}
 	//Mage - Improved Blizzard
 	sp = CheckAndReturnSpellEntry(11185);
 	if(sp != NULL)
