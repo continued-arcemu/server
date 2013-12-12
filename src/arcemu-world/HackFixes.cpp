@@ -1929,11 +1929,11 @@ void ApplyNormalFixes()
 	if(sp != NULL)
 		sp->procFlags = PROC_ON_MELEE_ATTACK | static_cast<uint32>(PROC_TARGET_SELF);
 
-	// Warrior - Heroic Fury
-	sp = CheckAndReturnSpellEntry(60970);
-	if(sp != NULL)
+	// heroic fury
+	sp = dbcSpell.LookupEntryForced(60970);
+	if( sp != NULL )
 	{
-		sp->Effect[0] = SPELL_EFFECT_DUMMY;
+		sp->Effect[1] = 3;
 	}
 
 	/**********************************************************
