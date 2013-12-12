@@ -4603,12 +4603,19 @@ void ApplyNormalFixes()
 		sp->ChannelInterruptFlags = 0; // Remove channeling behaviour.
 	}
 
-	//soul link
+	//soul link - warlock
 	sp = dbcSpell.LookupEntryForced( 19028 );
 	if( sp != NULL )
 	{
-		sp->Effect[0]= SPELL_EFFECT_TRIGGER_SPELL;
-		sp->EffectTriggerSpell[0] = 25228;
+		sp->Effect[0]=SPELL_EFFECT_APPLY_AURA;
+		sp->EffectApplyAuraName[0] = SPELL_AURA_SPLIT_DAMAGE;
+		sp->EffectMiscValue[0]=20;
+		sp->Effect[1] = 6;
+		sp->EffectApplyAuraName[1] = 79;
+		sp->EffectBasePoints[1] = 4; //4+1=5
+		sp->EffectImplicitTargetA[1] = EFF_TARGET_SELF;
+		sp->EffectImplicitTargetB[1] = EFF_TARGET_PET;
+		sp->c_is_flags |= SPELL_FLAG_IS_EXPIREING_WITH_PET;
 	}
 
 	//megai2: Everlasting Affliction
