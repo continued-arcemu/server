@@ -6910,6 +6910,8 @@ void ApplyNormalFixes()
 		sp->BGR_one_buff_from_caster_on_self = SPELL_TYPE3_DEATH_KNIGHT_AURA;
 	}
 
+
+
 	/**********************************************************
 	 *	Unholy Presence
 	 **********************************************************/
@@ -6923,15 +6925,27 @@ void ApplyNormalFixes()
 		sp->BGR_one_buff_from_caster_on_self = SPELL_TYPE3_DEATH_KNIGHT_AURA;
 	}
 
+
+
 	/**********************************************************
 	 *	Death Grip
 	 **********************************************************/
-	sp = CheckAndReturnSpellEntry(49576);
-	if(sp != NULL)
+	sp = dbcSpell.LookupEntryForced(49576);
+	if( sp != NULL )
 	{
-		sp->Effect[0] = SPELL_EFFECT_DUMMY;
+		sp->Effect[0] = SPELL_EFFECT_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 49560;
+		sp->EffectImplicitTargetA[0] = EFF_TARGET_SINGLE_ENEMY;
+		sp->EffectImplicitTargetB[0] = EFF_TARGET_NONE;
+		sp->FacingCasterFlags = 0;
 	}
-
+	sp = dbcSpell.LookupEntryForced(49560);
+	if( sp != NULL )
+	{
+		sp->EffectImplicitTargetA[0] = EFF_TARGET_SINGLE_ENEMY;
+		sp->EffectImplicitTargetB[0] = EFF_TARGET_SINGLE_ENEMY;
+		sp->FacingCasterFlags = 0; 
+	}
 	/*
 	http://www.wowhead.com/spell=81229
 	Runic Empowerment
@@ -6987,6 +7001,14 @@ void ApplyNormalFixes()
 		sp->EffectApplyAuraName[0] = SPELL_AURA_MOUNTED;
 		sp->EffectApplyAuraName[1] = SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED;
 		sp->EffectBasePoints[1] = 99;
+	}
+
+	//Endless Winter
+	sp = dbcSpell.LookupEntryForced(49137);
+	//if( sp != NULL )
+	{
+		sp->procFlags = PROC_ON_CAST_SPELL;
+		sp->ProcOnNameHash[0] = SPELL_HASH_CHAINS_OF_ICE;
 	}
 
 	/**********************************************************
