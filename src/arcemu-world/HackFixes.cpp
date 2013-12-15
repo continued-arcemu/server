@@ -7005,7 +7005,7 @@ void ApplyNormalFixes()
 
 	//Endless Winter
 	sp = dbcSpell.LookupEntryForced(49137);
-	//if( sp != NULL )
+	if( sp != NULL )
 	{
 		sp->procFlags = PROC_ON_CAST_SPELL;
 		sp->ProcOnNameHash[0] = SPELL_HASH_CHAINS_OF_ICE;
