@@ -3007,6 +3007,21 @@ void ApplyNormalFixes()
 
 	// Insert rogue spell fixes here
 
+	sp = dbcSpell.LookupEntryForced(51692);
+	if (sp != NULL)
+	{
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 51693;
+		sp->procChance = 50;
+	}
+	sp = dbcSpell.LookupEntryForced(51696);
+	if (sp != NULL)
+	{
+		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+		sp->EffectTriggerSpell[0] = 51693;
+		sp->procChance = 100;
+	}
+
 	//Rogue - Blade Twisting Rank 1
 	sp = CheckAndReturnSpellEntry(31124);
 	if(sp != NULL)
