@@ -332,15 +332,6 @@ bool ChatHandler::HandleAddInvItemCommand(const char* args, WorldSession* m_sess
 			{
 				sGMLog.writefromsession(m_session, "used add item command, item id %u [%s], quantity %u (only %lu added due to full inventory), to %s", it->ItemId, it->Name1, numadded, numadded, chr->GetName());
 			}
-
-			char messagetext[512];
-
-			snprintf(messagetext, 512, "Added item %s (id: %d), quantity %u, to %s's inventory.", GetItemLinkByProto(it, m_session->language).c_str(), (unsigned int)it->ItemId, numadded, chr->GetName());
-			SystemMessage(m_session, messagetext);
-			//snprintf(messagetext, 128, "%s added item %d (%s) to your inventory.", m_session->GetPlayer()->GetName(), (unsigned int)itemid, it->Name1);
-			snprintf(messagetext, 512, "%s added item %s, quantity %u, to your inventory.", m_session->GetPlayer()->GetName(), GetItemLinkByProto(it, chr->GetSession()->language).c_str(), numadded);
-
-			SystemMessageToPlr(chr,  messagetext);
 		}
 		else
 		{
